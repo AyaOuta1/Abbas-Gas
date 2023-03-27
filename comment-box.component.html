@@ -1,0 +1,32 @@
+<style>
+  .button1{
+  background-color: transparent;
+  border: none;
+  color: blue;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+</style>
+
+
+<form>
+  <div>
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" [(ngModel)]="username">
+  </div>
+  <div>
+    <label for="comment">Comment:</label>
+    <textarea id="comment" name="comment" [(ngModel)]="comment"></textarea>
+  </div>
+  <button (click)="addComment()">Add Comment</button>
+</form>
+<div class="comment" *ngFor="let comment of comments;">
+  <h2 class="username">{{ comment.username}}</h2>
+  <h3 class="comment-text">{{ comment.comment }}</h3>
+  <button type="button" *ngIf="isAdmin" (click)="deleteComment(index)">Delete Comment</button>
+
+</div>
+<button type="button" class="button1" (click)="loginAsAdmin()" [style.display]="isAdmin ? 'none' : 'block'">Login as Admin</button>
+<button type="button" class="button1" *ngIf="isAdmin" (click)="logoutAsAdmin()">Log out</button>
+
